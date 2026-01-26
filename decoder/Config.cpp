@@ -4,8 +4,10 @@
  *  Created on: 21.07.2017
  *      Author: sven
  */
+
 #include "Arduino.h"
 #include "Config.h"
+#include "ActionLolinMotorOutput.h"
 #include "FS.h"
 #include "Logger.h"
 #include "ArduinoJson.h"
@@ -202,7 +204,11 @@ void Config::parseOut(Controller* controller, Webserver* web, String n) {
 				int addr = parser->getValueByKey(idx, "i2caddr", "48").toInt();
 				int midx = parser->getValueByKey(idx, "motoridx", "0").toInt();
 				a = new ActionPWMSchieldV1Output(addr, midx);
-			} else {
+			} else if (type.equals("lolinmotor")) {
+				int addr = parser->getValueByKey(idx, "i2caddr", "48").toInt();
+				int midx = parser->getValueByKey(idx, "motoridx", "0").toInt();
+				a = new ActionLolinMotorOutput(addr, midx);
+			} else {				
 				Logger::log(LogLevel::ERROR, "Unbekannter Type: " + type);
 			}
 			if (a != NULL) {
