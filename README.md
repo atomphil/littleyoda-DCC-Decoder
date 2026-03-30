@@ -11,8 +11,8 @@ Weitere Informationen befinden sich im [Dokumentation](https://littleyoda.github
    Dekodern
 
 Die folgenden Dekoder nutzen diese Software:
- * [Weichendekoder](http://spurg.open4me.de/wordpress/784/Weichendecoder)
- * [ein sehr einfacher Lokdekoder](http://spurg.open4me.de/wordpress/786/Lokdekoder?2)
+ * [Weichendekoder](https://www.open4me.de/index.php/spurg/weichendecoder/)
+ * [ein sehr einfacher Lokdekoder](https://www.open4me.de/index.php/spurg/lokdekoder/)
  * [Ein Lokdekoder, der einen anderen DCC-Lokdekoder ansteuert](http://gartenbahntechnik.de/forum/viewtopic.php?f=22&t=418)
 
 Wer sich das Kompilieren nicht antun möchte, kann sich die fertigen bin-Dateien [herunterladen](https://github.com/littleyoda/littleyoda-DCC-Decoder/releases)
