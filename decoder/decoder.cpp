@@ -131,7 +131,7 @@ void handleSerial() {
 			Serial.printf_P(
 					PSTR("Version:\r\n"
 							"==================\r\n"
-							"%s\r\n"
+							"%s %s\r\n"
 							"LWIP %d.%d.%d.%d\r\n"
 							"\r\n"
 							"Memory:\r\n"
@@ -149,6 +149,7 @@ void handleSerial() {
 							"IP: %s/%s\r\n"
 					),
 					compile_date,
+					Consts::environment,
 					LWIP_VERSION_MAJOR, LWIP_VERSION_MINOR, LWIP_VERSION_REVISION, LWIP_VERSION_RC,
 					Logger::getInstance()->startmemory,
 					ESP.getFreeHeap(),

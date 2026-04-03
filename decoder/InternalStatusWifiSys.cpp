@@ -100,6 +100,33 @@ void InternalStatusWifiSys::getInternalStatus(IInternalStatusCallback* cb, Strin
 		if (key.equals("gitversion") || key.equals("*")) {
 			cb->send("sys", "gitversion", gitversion);
 		}
+		if (key.equals("cpufreq") || key.equals("*")) {
+			#ifdef ESP32
+			cb->send("sys", "cpufreq", String(getCpuFrequencyMhz()));
+			#endif
+			#ifdef ESP8266
+			cb->send("sys", "cpufreq", String(ESP.getCpuFreqMHz()));
+			#endif
+		}
+		if (key.equals("chipmodel") || key.equals("*")) {
+			#ifdef ESP32
+			cb->send("sys", "chipmodel", String(ESP.getChipModel()));
+			#endif
+			#ifdef ESP8266
+			cb->send("sys", "chipmodel", "esp8266");
+			#endif
+		}
+		if (key.equals("cores") || key.equals("*")) {
+			#ifdef ESP32
+			cb->send("sys", "cores", String(ESP.getChipCores()));
+			#endif
+			#ifdef ESP8266
+			cb->send("sys", "cores", "1");
+			#endif
+		}
+		if (key.equals("env") || key.equals("*")) {
+			cb->send("sys", "env", Consts::environment);
+		}
 		// if (key.equals("lwip") || key.equals("*")) {
 		// 	cb->send("sys", "lwip", String(LWIP_VERSION_MAJOR) + "." + String(LWIP_VERSION_MINOR) + "." + String(LWIP_VERSION_REVISION) + "." + String(LWIP_VERSION_RC));
 		// }

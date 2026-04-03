@@ -70,7 +70,7 @@ Webserver::Webserver(Controller* c) {
 #elif defined(ESP32)
 	server->on("/firmware", HTTP_GET, [](){
     	server->sendHeader("Connection", "close");
-    	server->send(200, "text/html", F("<form method='POST' action='/firmware' enctype='multipart/form-data'><input type='file' name='update'><input type='submit' value='Update'></form>"));
+    	server->send(200, "text/html", F("<form method='POST' action='/firmware' enctype='multipart/form-data'><input type='file' name='update'><input type='submit' value='Update'><br>Bitte passende firmware.bin oder 0x10000 nutzen.</form>"));
 	});
 	server->on("/firmware", HTTP_POST, []() {
       server->sendHeader("Connection", "close");

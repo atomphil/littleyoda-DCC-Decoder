@@ -18,9 +18,11 @@ const char compile_date[] = "Compiledate: "
 							" {NONGITVERSION}";
 const char gitversion[] = "{NONGITVERSION}";
 
+
 class Consts {
 public:
 	static int DEFAULTSPEEDSTEPS;
+	static char* environment;
 	const static int SPEED_EMERGENCY = 0;
 	const static int SPEED_STOP = 1;
 	const static int SPEED_FORWARD = 1;
