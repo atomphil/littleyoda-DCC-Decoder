@@ -11,11 +11,24 @@ cp ./.pio/build/esp8285/firmware.bin release/littleyoda-DCC-Decoder.esp8285.bin
 cp ./.pio/build/d1_mini/firmware.bin release/littleyoda-DCC-Decoder.d1_mini.bin
 cp ./.pio/build/d1_mini_pro/firmware.bin release/littleyoda-DCC-Decoder.d1_mini_pro.bin
 cp ./.pio/build/nodemcu/firmware.bin release/littleyoda-DCC-Decoder.nodemcu.bin
-for i in esp32dev esp32full mhetesp32minikit seeed_xiao_esp32c3 seeed_xiao_esp32c6 nologo_esp32c3_super_mini lolin_s2_mini
+# RISC-V Bootloader @ 0x1000
+for i in esp32dev esp32full mhetesp32minikit  lolin_s2_mini
 do
 	dir=_$i
 	mkdir $dir
 	cp ./.pio/build/$i/bootloader.bin $dir/0x1000
+	cp ~/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin $dir/0xe000
+	cp ./.pio/build/$i/partitions.bin $dir/0x8000
+	cp ./.pio/build/$i/firmware.bin $dir/0x10000
+	zip -j release/littleyoda-DCC-Decoder.${i}.ly32 $dir/0x*
+done
+
+# RISC-V Bootloader @ 0x0
+for i in seeed_xiao_esp32c3 seeed_xiao_esp32c6 nologo_esp32c3_super_mini
+do
+	dir=_$i
+	mkdir $dir
+	cp ./.pio/build/$i/bootloader.bin $dir/0x0000
 	cp ~/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin $dir/0xe000
 	cp ./.pio/build/$i/partitions.bin $dir/0x8000
 	cp ./.pio/build/$i/firmware.bin $dir/0x10000
